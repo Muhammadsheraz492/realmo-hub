@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simply Tablet/Data Knowledge Check</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .quiz-container {
+            overflow-y: auto;
+            max-height: 80vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .option {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        #submit-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simply Tablet/Data Knowledge Check</h1>
+        <div id="info"></div>
+        <div id="quiz" class="quiz-container"></div>
+        <button id="submit-button">Submit Quiz</button>
+        <p>Your score: <span id="score">0</span></p>
+    </div>
+
+    <form id="quiz-form" action="https://formsubmit.co/iggy.reemo@gmail.com" method="POST" target="_blank">
+        <input type="hidden" name="advocate" id="form-advocate">
+        <input type="hidden" name="location" id="form-location">
+        <input type="hidden" name="score" id="form-score">
+        <input type="hidden" name="html-content" id="form-html-content">
+        <input type="hidden" name="_next" value="http://reemohub.s3-website.us-east-2.amazonaws.com/">
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the initial cost of Simply Data?",
+                options: [
+                    "$15",
+                    "$20",
+                    "$25",
+                    "$30"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of the following devices are eligible for Simply Tablet Data?",
+                options: [
+                    "Cricket-branded tablets only",
+                    "Non-Cricket tablets only",
+                    "All tablets",
+                    "Tablets from any brand"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the data limit for Simply Tablet Data?",
+                options: [
+                    "3GB",
+                    "5GB",
+                    "10GB",
+                    "15GB"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "True or False: Simply Tablet Data can be used as a mobile hotspot.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Which plan is required to use Simply Data?",
+                options: [
+                    "Unlimited Plan",
+                    "Limited Plan",
+                    "Basic Plan",
+                    "Any Plan"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "True or False: Simply Tablet Data can be added to existing Cricket service plans.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the cost of adding Simply Tablet Data to a Cricket plan?",
+                options: [
+                    "$10",
+                    "$15",
+                    "$20",
+                    "$25"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "True or False: Simply Data includes a new device.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Which of the following is NOT included in the Simply Data plan?",
+                options: [
+                    "Voice calls",
+                    "Text messaging",
+                    "High-speed data",
+                    "Internet access"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "True or False: Simply Data can be used with any tablet device.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 1
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const { advocate, location } = getQueryParams();
+            document.getElementById('info').innerHTML = `
+                <p><strong>Advocate Name:</strong> ${advocate}</p>
+                <p><strong>Location ID:</strong> ${location}</p>
+            `;
+
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question';
+                questionElement.id = `question-${index}`;
+
+                const questionText = document.createElement('p');
+                questionText.textContent = question.question;
+                questionElement.appendChild(questionText);
+
+                question.options.forEach((option, optionIndex) => {
+                    const label = document.createElement('label');
+                    label.className = 'option';
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `question-${index}`;
+                    input.value = optionIndex;
+                    input.addEventListener('change', () => {
+                        handleOptionChange(index, optionIndex);
+                    });
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(option));
+                    questionElement.appendChild(label);
+                });
+
+                quizContainer.appendChild(questionElement);
+            });
+        });
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                advocate: params.get('advocate'),
+                location: params.get('location')
+            };
+        }
+
+        function handleOptionChange(questionIndex, selectedOptionIndex) {
+            const questionElement = document.getElementById(`question-${questionIndex}`);
+            const options = questionElement.querySelectorAll('.option');
+            const correctOptionIndex = questions[questionIndex].correctAnswer;
+
+            options.forEach((option, optionIndex) => {
+                option.classList.remove('correct', 'incorrect');
+                const input = option.querySelector('input');
+                if (input) {
+                    input.disabled = true;
+                }
+                if (optionIndex === correctOptionIndex) {
+                    option.classList.add('correct');
+                } else if (optionIndex === selectedOptionIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            updateScore();
+        }
+
+        function updateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="question-${index}"]:checked`);
+                if (selectedAnswer) {
+                    const answerIndex = parseInt(selectedAnswer.value);
+                    if (answerIndex === question.correctAnswer) {
+                        score += 10;
+                    }
+                }
+            });
+            document.getElementById('score').textContent = score;
+        }
+
+        document.getElementById('submit-button').addEventListener('click', () => {
+            const score = parseInt(document.getElementById('score').textContent);
+
+            const { advocate, location } = getQueryParams();
+            
+            // Populate hidden fields
+            document.getElementById('form-advocate').value = advocate;
+            document.getElementById('form-location').value = location;
+            document.getElementById('form-score').value = score;
+
+            // Generate HTML content
+            const htmlContent = document.querySelector('.quiz-container').innerHTML;
+            document.getElementById('form-html-content').value = htmlContent;
+
+            // Submit form
+            document.getElementById('quiz-form').submit();
+        });
+    </script>
+</body>
+</html>
+
+
+

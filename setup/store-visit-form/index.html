@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Visit Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Store Visit Form Banner at the Top -->
+        <section class="form-section">
+            <h2>Store Visit Form</h2>
+        </section>
+        
+        <!-- Observer Information Section -->
+        <section class="form-section">
+            <label>Observer Name: <input type="text" name="ObserverName" required></label>
+            <label>Location ID: <input type="text" name="LocationID" required></label>
+            <label>Date: <input type="date" name="Date" required></label>
+        </section>
+        
+        <!-- Activations and Other Metrics Section -->
+        <section class="form-section">
+            <table>
+                <tr>
+                    <th>Activations</th>
+                    <th>Upgrades</th>
+                    <th>$60 RPM</th>
+                    <th>PPP Apps</th>
+                    <th>WTR</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="Activations" required></td>
+                    <td><input type="text" name="Upgrades" required></td>
+                    <td><input type="text" name="$60RPM" required></td>
+                    <td><input type="text" name="PPPApps" required></td>
+                    <td><input type="text" name="WTR" required></td>
+                </tr>
+                <tr>
+                    <th>AutoPay</th>
+                    <th>Cricket Protect</th>
+                    <th>APO</th>
+                    <th>Max</th>
+                    <th>Refer a Friend %</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="AutoPay" required></td>
+                    <td><input type="text" name="CricketProtect" required></td>
+                    <td><input type="text" name="APO" required></td>
+                    <td><input type="text" name="Max" required></td>
+                    <td><input type="text" name="ReferAFriend" required></td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- Today's Visit Focus Section -->
+        <section class="form-section">
+            <h2>Today's Visit Focus</h2>
+            <textarea name="TodaysVisitFocus" required></textarea>
+        </section>
+        
+        <!-- Marketing & Events Section -->
+        <section class="form-section">
+            <h2>MARKETING & EVENTS</h2>
+            <table>
+                <tr>
+                    <td>Does store have table and speakers out</td>
+                    <td>
+                        <select name="TableAndSpeakersOut" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td># events scheduled for this month</td>
+                    <td><input type="text" name="EventsScheduled" required></td>
+                </tr>
+                <tr>
+                    <td># of events executed so far this month</td>
+                    <td><input type="text" name="EventsExecuted" required></td>
+                </tr>
+                <tr>
+                    <td># of Mozeus leads</td>
+                    <td><input type="text" name="MozeusLeads" required></td>
+                </tr>
+                <tr>
+                    <td>Were sellers present outside the store</td>
+                    <td>
+                        <select name="SellersPresent" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Velocity Section -->
+        <section class="form-section">
+            <h2>VELOCITY</h2>
+            <table>
+                <tr>
+                    <td>Are daily huddles being completed</td>
+                    <td>
+                        <select name="DailyHuddles" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Are observations being completed</td>
+                    <td>
+                        <select name="Observations" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Is whiteboard filled out and current</td>
+                    <td>
+                        <select name="Whiteboard" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Does store have adequate phone inventory</td>
+                    <td>
+                        <select name="PhoneInventory" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Does store have adequate accessories</td>
+                    <td>
+                        <select name="Accessories" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Store Readiness for Customers Section -->
+        <section class="form-section">
+            <h2>Store Readiness for Customers</h2>
+            <table>
+                <tr>
+                    <td>Store exterior and entryway is clean</td>
+                    <td>
+                        <select name="ExteriorClean" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Store interior is clean</td>
+                    <td>
+                        <select name="InteriorClean" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Store fixtures are clean & in good condition</td>
+                    <td>
+                        <select name="FixturesClean" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Advocates are in Couture with name tag</td>
+                    <td>
+                        <select name="AdvocatesCouture" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td># of customers during visit</td>
+                    <td><input type="text" name="CustomersDuringVisit" required></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Merchandising Readiness Section -->
+        <section class="form-section">
+            <h2>Merchandising Readiness</h2>
+            <table>
+                <tr>
+                    <td>CPOG completion %</td>
+                    <td><input type="text" name="CPOGCompletion" required></td>
+                </tr>
+                <tr>
+                    <td>Cricket Explorer+ is installed and playing</td>
+                    <td>
+                        <select name="CricketExplorer" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>iPhone price tags are displayed</td>
+                    <td>
+                        <select name="iPhonePriceTags" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Accessory walls are fully stocked</td>
+                    <td>
+                        <select name="AccessoryWalls" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Attachments Section -->
+        <section class="form-section">
+            <h2>Attachments</h2>
+            <label for="attachment1">Upload Photo 1: </label>
+            <input type="file" id="attachment1" name="attachment1" multiple>
+            <label for="attachment2">Upload Photo 2: </label>
+            <input type="file" id="attachment2" name="attachment2" multiple>
+            <label for="attachment3">Upload Photo 3: </label>
+            <input type="file" id="attachment3" name="attachment3" multiple>
+        </section>
+
+        <!-- Notes Section -->
+        <section class="form-section">
+            <h2>Notes</h2>
+            <textarea name="Notes"></textarea>
+        </section>
+
+        <!-- Customer and Store Successes Section -->
+        <section class="form-section">
+            <h2>Customer and Store Successes</h2>
+            <textarea name="CustomerStoreSuccesses"></textarea>
+        </section>
+
+        <!-- Store and Customer Areas of Opportunities Section -->
+        <section class="form-section">
+            <h2>Store and Customer Areas of Opportunities</h2>
+            <textarea name="StoreCustomerOpportunities"></textarea>
+        </section>
+
+        <!-- Next Review Date Section -->
+        <section class="form-section">
+            <label>Next Review Date: <input type="date" name="NextReviewDate" required></label>
+        </section>
+
+        <!-- Submit Button -->
+        <section class="form-section">
+            <button id="submitBtn">Submit</button>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Create an HTML string from form data
+            const formData = new FormData(document.querySelector('form'));
+            let htmlContent = '<h1>Store Visit Form Submission</h1><ul>';
+
+            formData.forEach((value, key) => {
+                if (key === 'attachment1[]' || key === 'attachment2[]' || key === 'attachment3[]') {
+                    htmlContent += `<li><strong>${key}:</strong> ${value.name}</li>`;
+                } else {
+                    htmlContent += `<li><strong>${key}:</strong> ${value}</li>`;
+                }
+            });
+
+            htmlContent += '</ul>';
+
+            // Create a new FormData object for the email
+            const emailData = new FormData();
+            emailData.append('_subject', 'Store Visit Form Submission');
+            emailData.append('_replyto', 'iggy.reemo@gmail.com');
+            emailData.append('_message', htmlContent);
+
+            // Submit the form using Formspree
+            fetch('https://formspree.io/f/mrbzpjpz', {
+                method: 'POST',
+                body: emailData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(text);
+                    });
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Response text:', text);
+                alert('Form submitted successfully');
+                window.location.href = 'http://reemohub.s3-website.us-east-2.amazonaws.com/';
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+                alert('Error submitting form');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

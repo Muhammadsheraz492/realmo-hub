@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Going the Extra Smile Knowledge Check</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .quiz-container {
+            overflow-y: auto;
+            max-height: 80vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .option {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        #submit-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Going the Extra Smile Knowledge Check</h1>
+        <div id="info"></div>
+        <div id="quiz" class="quiz-container"></div>
+        <button id="submit-button">Submit Quiz</button>
+        <p>Your score: <span id="score">0</span></p>
+    </div>
+
+    <form id="quiz-form" action="https://formsubmit.co/iggy.reemo@gmail.com" method="POST" target="_blank">
+        <input type="hidden" name="advocate" id="form-advocate">
+        <input type="hidden" name="location" id="form-location">
+        <input type="hidden" name="score" id="form-score">
+        <input type="hidden" name="html-content" id="form-html-content">
+        <input type="hidden" name="_next" value="http://reemohub.s3-website.us-east-2.amazonaws.com/">
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the core purpose of 'Going the Extra Smile'?",
+                options: [
+                    "To increase sales",
+                    "To inspire smiles through meaningful connections",
+                    "To reduce customer service costs",
+                    "To improve product features"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "What should you do when a customer first enters the store?",
+                options: [
+                    "Ask them to wait for assistance",
+                    "Greet them with a friendly, genuine hello",
+                    "Direct them to the nearest store",
+                    "Ignore them until you are free"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "True or False: You should use the customer's name to personalize the interaction.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "Which of the following is NOT a recommended action when uncovering customer needs?",
+                options: [
+                    "Ask questions to understand their needs",
+                    "Listen and give your undivided attention",
+                    "Take ownership and commit to finding the right solution",
+                    "Assume you know what they need without asking"
+                ],
+                correctAnswer: 3
+            },
+            {
+                question: "What is important to do when delivering a personalized solution?",
+                options: [
+                    "Find a universal solution for all customers",
+                    "Ensure the solution adds value and meets the customer’s needs",
+                    "Minimize the interaction time",
+                    "Provide a solution without explaining it"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "True or False: You should recap the solution and address any concerns to gain agreement.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "What should you do to thoroughly educate the customer?",
+                options: [
+                    "Perform a test call and download apps",
+                    "Skip the setup of additional features",
+                    "Only provide basic information",
+                    "Avoid explaining digital options"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the final step in the interaction according to 'Going the Extra Smile'?",
+                options: [
+                    "Ask if you can help with anything else and thank them",
+                    "Direct them to a customer service hotline",
+                    "Send them a follow-up email",
+                    "Offer them a discount coupon"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "True or False: You should show appreciation and be personable to the very end of the interaction.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the main focus of Cricket's service approach as per 'Going the Extra Smile'?",
+                options: [
+                    "To increase revenue",
+                    "To provide high-quality and affordable wireless experience",
+                    "To minimize customer interactions",
+                    "To streamline internal processes"
+                ],
+                correctAnswer: 1
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const { advocate, location } = getQueryParams();
+            document.getElementById('info').innerHTML = `
+                <p><strong>Advocate Name:</strong> ${advocate}</p>
+                <p><strong>Location ID:</strong> ${location}</p>
+            `;
+
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question';
+                questionElement.id = `question-${index}`;
+
+                const questionText = document.createElement('p');
+                questionText.textContent = question.question;
+                questionElement.appendChild(questionText);
+
+                question.options.forEach((option, optionIndex) => {
+                    const label = document.createElement('label');
+                    label.className = 'option';
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = `question-${index}`;
+                    input.value = optionIndex;
+                    input.addEventListener('change', () => {
+                        handleOptionChange(index, optionIndex);
+                    });
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(option));
+                    questionElement.appendChild(label);
+                });
+
+                quizContainer.appendChild(questionElement);
+            });
+        });
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                advocate: params.get('advocate'),
+                location: params.get('location')
+            };
+        }
+
+        function handleOptionChange(questionIndex, selectedOptionIndex) {
+            const questionElement = document.getElementById(`question-${questionIndex}`);
+            const options = questionElement.querySelectorAll('.option');
+            const correctOptionIndex = questions[questionIndex].correctAnswer;
+
+            options.forEach((option, optionIndex) => {
+                option.classList.remove('correct', 'incorrect');
+                const input = option.querySelector('input');
+                if (input) {
+                    input.disabled = true;
+                }
+                if (optionIndex === correctOptionIndex) {
+                    option.classList.add('correct');
+                } else if (optionIndex === selectedOptionIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            updateScore();
+        }
+
+        function updateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="question-${index}"]:checked`);
+                if (selectedAnswer) {
+                    const answerIndex = parseInt(selectedAnswer.value);
+                    if (answerIndex === question.correctAnswer) {
+                        score += 10;
+                    }
+                }
+            });
+            document.getElementById('score').textContent = score;
+        }
+
+        document.getElementById('submit-button').addEventListener('click', () => {
+            const score = parseInt(document.getElementById('score').textContent);
+
+            const { advocate, location } = getQueryParams();
+            
+            // Populate hidden fields
+            document.getElementById('form-advocate').value = advocate;
+            document.getElementById('form-location').value = location;
+            document.getElementById('form-score').value = score;
+
+            // Generate HTML content
+            const htmlContent = document.querySelector('.quiz-container').innerHTML;
+            document.getElementById('form-html-content').value = htmlContent;
+
+            // Submit form
+            document.getElementById('quiz-form').submit();
+        });
+    </script>
+</body>
+</html>
+
+
+

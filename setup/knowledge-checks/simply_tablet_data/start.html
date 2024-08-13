@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Protect Knowledge Check Start</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simply Tablet/Data Knowledge Check</h1>
+        <form id="start-form">
+            <label for="advocate-name">Advocate Name:</label>
+            <input type="text" id="advocate-name" name="advocate-name" required>
+            <label for="location-id">Location ID:</label>
+            <input type="text" id="location-id" name="location-id" required>
+            <button type="button" onclick="startQuiz()">Start Quiz</button>
+        </form>
+    </div>
+
+    <script>
+        function startQuiz() {
+            const advocateName = document.getElementById('advocate-name').value;
+            const locationId = document.getElementById('location-id').value;
+
+            if (advocateName && locationId) {
+                window.location.href = `index.html?advocate=${encodeURIComponent(advocateName)}&location=${encodeURIComponent(locationId)}`;
+            } else {
+                alert('Please enter both Advocate Name and Location ID.');
+            }
+        }
+    </script>
+</body>
+</html>

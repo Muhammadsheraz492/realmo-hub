@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    background-image: url('https://reemohub.s3.us-east-2.amazonaws.com/images/background.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    text-align: center;
+    margin-top: auto; /* Push content to the top */
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.buttons-container .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.buttons-container button {
+    display: block;
+    width: 140px;
+    height: 50px; /* Set a consistent height for all buttons */
+    padding: 10px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* Center text within the button */
+    line-height: 1.5; /* Adjust line-height for better vertical alignment */
+}
+
+.buttons-container button:hover {
+    background-color: #45a049;
+}
