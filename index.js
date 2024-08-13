@@ -39,9 +39,9 @@ app.post('/upload-and-send-email', upload.single('pdf'), (req, res) => {
         ]
     }, (error, info) => {
         // Clean up the file after sending the email
-        // fs.unlink(pdfPath, (err) => {
-        //     if (err) console.error('Error deleting file:', err);
-        // });
+        fs.unlink(pdfPath, (err) => {
+            if (err) console.error('Error deleting file:', err);
+        });
 
         if (error) {
             console.error('Error sending email:', error);
