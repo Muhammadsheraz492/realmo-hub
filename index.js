@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
+const core =require('cors')
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -17,6 +18,13 @@ const transporter = nodemailer.createTransport({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(core())
+app.use(
+    cors({
+      origin: "*",
+      credentials: true,
+    })
+  );
 app.get('/',(req,res)=>{res.status(200).json("Server is Working")})
 
 app.post('/upload-and-send-email', upload.single('pdf'), async (req, res) => {
