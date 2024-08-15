@@ -17,6 +17,7 @@ const transporter = nodemailer.createTransport({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.get('/',(req,res)=>{res.status(200).json("Server is Working")})
 
 app.post('/upload-and-send-email', upload.single('pdf'), async (req, res) => {
     try {
