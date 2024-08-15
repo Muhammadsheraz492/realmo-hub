@@ -21,9 +21,9 @@ app.use(express.json());
 app.post('/upload-and-send-email', upload.single('pdf'), async (req, res) => {
     try {
         // Validate request
-        if (!req.file || !req.body.advocate || !req.body.location || !req.body.score || !req.body.htmlContent) {
-            return res.status(400).json({ success: false, message: 'Invalid request data' });
-        }
+        // if (!req.file || !req.body.advocate || !req.body.location || !req.body.score || !req.body.htmlContent) {
+        //     return res.status(400).json({ success: false, message: 'Invalid request data' });
+        // }
 
         const { advocate, location, score, htmlContent } = req.body;
         const pdfPath = req.file.path;
@@ -32,7 +32,6 @@ app.post('/upload-and-send-email', upload.single('pdf'), async (req, res) => {
             from: 'muhammadshiraz492@gmail.com',
             to: 'tocybernatesolution@gmail.com',
             subject: 'Quiz Results',
-            text: `Advocate: ${advocate}\nLocation: ${location}\nScore: ${score}`,
             html: htmlContent,
             attachments: [
                 {
@@ -55,7 +54,7 @@ app.post('/upload-and-send-email', upload.single('pdf'), async (req, res) => {
         console.log('Email sent successfully');
         res.json({ success: true, message: 'Email sent successfully' });
     } catch (error) {
-        console.error('Error in processing request:', error);
+        console.log('Error in processing request:', error);
 
         // Clean up the file if an error occurred before the file was deleted
         if (req.file) {
